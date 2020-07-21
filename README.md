@@ -1,4 +1,4 @@
-# Typescript React Todo w/ State Persistence
+# TypeScript React Todo w/ State Persistence
 
 A simple todo app made using TypeScript + React.
 
