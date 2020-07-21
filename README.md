@@ -7,5 +7,6 @@ A simple todo app made using TypeScript + React.
 - usePersistentState = Custom Hook
 
 ### Todo:
-- [ ] ⚡️ Finish filter (completed todo)
-- [ ] 🏃‍♂️ Implement State Persistence
+- [ ] 📝 Finish Filter (Complete Todo)
+- [ ] 👨‍💻 Implement State Persistence
+- [ ] ✅ 'Completed', 'Not Completed' & 'All' Tabs
