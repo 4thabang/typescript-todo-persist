@@ -2,9 +2,9 @@
 
 A simple todo app made using TypeScript + React.
 
-- useReducer
-- useState
-- usePersistentState = Custom Hook
+- ➡️ useReducer
+- ➡️ useState
+- ➡️ usePersistentState = Custom Hook
 
 ### Todo:
 - [ ] 📝 Finish Filter (Complete Todo)
