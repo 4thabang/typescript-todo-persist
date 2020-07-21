@@ -10,3 +10,5 @@ A simple todo app made using TypeScript + React.
 - [ ] 📝 Finish Filter (Complete Todo)
 - [ ] 👨‍💻 Implement State Persistence
 - [ ] ✅ 'Completed', 'Not Completed' & 'All' Tabs
+- [ ] 🎨 Style Todo List
+- [ ] 🗂 Code Splitting
