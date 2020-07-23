@@ -75,8 +75,8 @@ const App: React.FC<{ message: string }> = ({ message = "" }) => {
         <input onChange={handleText} value={text} />
         <button onClick={handleDispatch}>Add Todo</button>
       </form>
-      {todos.map((todo: any, id: any) => (
-        <React.Fragment key={id}>
+      {todos.map((todo: any) => (
+        <React.Fragment key={todo.id}>
           <p>{todo.todos}</p>
           <button onClick={handleComplete}>Mark Complete</button>
         </React.Fragment>
