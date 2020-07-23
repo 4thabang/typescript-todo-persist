@@ -1,16 +1,17 @@
 import * as React from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
 interface Reducer<R> {
   (state: R, action: R): R;
 }
 
-type Typess = "ADD_TODO" | "TODO_COMPLETE" | "ALL_TODOS";
+type Types = "ADD_TODO" | "TODO_COMPLETE" | "ALL_TODOS";
 
 // These are optional. They make the code cleaner
 // Ideally want to import these from another 'Types' folder.
-const ADD_TODO: Typess = "ADD_TODO";
-const TODO_COMPLETE: Typess = "TODO_COMPLETE";
+const ADD_TODO: Types = "ADD_TODO";
+const TODO_COMPLETE: Types = "TODO_COMPLETE";
 
 type Action =
   | { type: "ADD_TODO"; payload: string }
@@ -24,7 +25,7 @@ reducer = (state: State, action: Action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        todos: [...state.todos, { id: 1, todos: action.payload }]
+        todos: [...state.todos, { id: uuidv4(), todos: action.payload }]
       };
     case TODO_COMPLETE:
       return state.todos.filter((todo: any) => todo.id !== state.todos);
@@ -73,6 +74,8 @@ const App: React.FC<{ message: ISubmitTodo; emptyMessage: string }> = ({
   };
 
   const handleText = (e: any) => setText(e.target.value);
+
+  console.log(todos.map((e: any) => e.id));
 
   return (
     <div className="App">
