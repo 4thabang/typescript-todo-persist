@@ -50,7 +50,7 @@ function usePersistentState(key: string, initVal: any) {
   return [value, setValue];
 }
 
-const App: React.FC<{ message?: ISubmitTodo; emptyMessage: string }> = ({
+const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
   message,
   emptyMessage
 }) => {
