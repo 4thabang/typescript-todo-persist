@@ -50,9 +50,9 @@ function usePersistentState(key: string, initVal: any) {
   return [value, setValue];
 }
 
-const App: React.FC<{ message: ISubmitTodo; emptyMessage: string }> = ({
+const App: React.FC<{ message?: ISubmitTodo; emptyMessage: string }> = ({
   message,
-  emptyMessage = ""
+  emptyMessage
 }) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
