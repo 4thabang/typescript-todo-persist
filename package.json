@@ -1,17 +1,15 @@
 {
-  "name": "react-typescript",
+  "name": "typescript-react-todo",
   "version": "1.0.0",
-  "description": "React and TypeScript example starter project",
-  "keywords": [
-    "typescript",
-    "react",
-    "starter"
-  ],
+  "description": "",
+  "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@types/styled-components": "5.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "styled-components": "5.1.1",
     "uuid": "8.2.0"
   },
   "devDependencies": {
@@ -24,6 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "resoulution": {
+    "styled-components": "^5"
   },
   "browserslist": [
     ">0.2%",

@@ -1,53 +1,12 @@
 import * as React from "react";
-import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
-
-interface Reducer<R> {
-  (state: R, action: R): R;
-}
-
-type Types = "ADD_TODO" | "TODO_COMPLETE" | "ALL_TODOS";
-
-// These are optional. They make the code cleaner
-// Ideally want to import these from another 'Types' folder.
-const ADD_TODO: Types = "ADD_TODO";
-const TODO_COMPLETE: Types = "TODO_COMPLETE";
-
-type Action =
-  | { type: "ADD_TODO"; payload: string }
-  | { type: "TODO_COMPLETE"; payload: any };
-
-const initialState = { todos: [] };
-type State = { todos: [] };
-
-let reducer: Reducer<any>;
-reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case ADD_TODO:
-      return {
-        todos: [...state.todos, { id: uuidv4(), todos: action.payload }]
-      };
-    case TODO_COMPLETE:
-      return state.todos.filter((todo: any) => todo.id !== state.todos);
-    default:
-      return state;
-  }
-};
+import { Input, Button, Box, Box1 } from "./components";
+import { usePersistentState } from "./useHooks";
+import { reducer, initialState } from "./reducer";
+import { ADD_TODO, TODO_COMPLETE } from "./types";
 
 interface ISubmitTodo {
   message: string | number | string[] | undefined;
-}
-
-// Persistent State Hook
-function usePersistentState(key: string, initVal: any) {
-  const [value, setValue] = React.useState(() => {
-    const perstVal = window.localStorage.getItem(key);
-    return perstVal !== null ? JSON.parse(perstVal) : initVal;
-  });
-  React.useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-  return [value, setValue];
 }
 
 const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
@@ -56,11 +15,11 @@ const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
 }) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
-  const [text, setText] = usePersistentState("Todo", emptyMessage);
+  const [text, setText] = usePersistentState("Todo", "");
 
   // const [text, setText] = React.useState(emptyMessage);
 
-  const handleDispatch = (e: any) => {
+  const handleDispatch = (e: React.MouseEvent<HTMLElement>): void => {
     e.preventDefault();
     if (text !== emptyMessage) {
       dispatch({ type: ADD_TODO, payload: text });
@@ -68,28 +27,36 @@ const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
     }
   };
 
-  const handleComplete = (e: any) => {
+  const handleComplete = (
+    e: React.MouseEvent | React.FormEvent<HTMLElement>
+  ): void => {
     e.preventDefault();
     dispatch({ type: TODO_COMPLETE });
   };
 
-  const handleText = (e: any) => setText(e.target.value);
-
-  console.log(todos.map((e: any) => e.id));
+  const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
 
   return (
     <div className="App">
-      <h1>Thabang's TypeScript Todo App</h1>
+      {/* <h1>Thabang's TypeScript Todo App</h1> */}
       <form onSubmit={handleComplete}>
-        <input onChange={handleText} value={text} />
-        <button onClick={handleDispatch}>Add Todo</button>
+        <Input
+          onChange={handleText}
+          placeholder="e.g. Complete Server"
+          value={text}
+        />
+        <Button onClick={handleDispatch}>Add Todo</Button>
       </form>
-      {todos.map((todo: any) => (
-        <React.Fragment key={todo.id}>
-          <input type="checkbox" onClick={handleComplete} />
-          <p>{todo.todos}</p>
-        </React.Fragment>
-      ))}
+      <Box1>
+        {todos.map((todo: any) => (
+          <Box key={todo.id}>
+            <p>{todo.todos}</p>
+            <Button>Toggle Todo</Button>
+          </Box>
+        ))}
+      </Box1>
     </div>
   );
 };
