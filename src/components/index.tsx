@@ -21,7 +21,7 @@ export const Input = styled.input`
   border-radius: 0.625rem;
   border: none;
   padding: 10px;
-  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 30px 0 rgba(0, 0, 0, 0.1);
 `;
 
 export const Box = styled.div`
