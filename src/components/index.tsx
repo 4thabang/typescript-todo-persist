@@ -14,6 +14,7 @@ export const Button = styled.button`
   &:hover {
     border-radius: 0.625rem;
     background-color: purple;
+    border: 1px solid purple;
   }
 `;
 
