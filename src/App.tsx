@@ -9,10 +9,7 @@ interface ISubmitTodo {
   message: string | number | string[] | undefined;
 }
 
-const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
-  message = "",
-  emptyMessage = ""
-}) => {
+const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
   const [text, setText] = usePersistentState("Todos", "");
