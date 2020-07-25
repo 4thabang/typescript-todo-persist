@@ -10,20 +10,20 @@ interface ISubmitTodo {
 }
 
 const App: React.FC<{ message?: ISubmitTodo; emptyMessage?: string }> = ({
-  message,
+  message = "",
   emptyMessage = ""
 }) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
-  const [text, setText] = usePersistentState("Todo", "");
+  const [text, setText] = usePersistentState("Todos", "");
 
   // const [text, setText] = React.useState(emptyMessage);
 
   const handleDispatch = (e: React.MouseEvent<HTMLElement>): void => {
     e.preventDefault();
-    if (text !== emptyMessage) {
+    if (text !== message) {
       dispatch({ type: ADD_TODO, payload: text });
-      setText(emptyMessage);
+      setText(message);
     }
   };
 
