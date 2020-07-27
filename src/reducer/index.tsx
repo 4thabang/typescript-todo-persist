@@ -1,4 +1,4 @@
-import { ADD_TODO, TODO_COMPLETE } from "../types";
+import { ADD_TODO, TODO_COMPLETE, All_TODOS } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Reducer<R> {
@@ -20,6 +20,8 @@ reducer = (state: State, action: Action) => {
       };
     case TODO_COMPLETE:
       return state.todos.filter((todo: any) => todo.id !== state.todos);
+    case ALL_TODOS:
+      return;
     default:
       return state;
   }
