@@ -1,7 +1,7 @@
 import * as React from "react";
 
 type Persist = {
-
+  key: string;
 }
 
 // Persistent State Hook
