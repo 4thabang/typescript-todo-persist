@@ -1,5 +1,9 @@
 import * as React from "react";
 
+type Persist = {
+
+}
+
 // Persistent State Hook
 export const usePersistentState = (key: string, initVal: number) => {
   const [value, setValue] = React.useState(() => {
