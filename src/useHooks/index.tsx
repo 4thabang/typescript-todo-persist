@@ -3,7 +3,7 @@ import * as React from "react";
 type Persist = {
   key: string;
   initVal: number;
-}
+};
 
 // Persistent State Hook
 export const usePersistentState = (key: string, initVal: number) => {
