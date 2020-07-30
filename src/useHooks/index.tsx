@@ -1,7 +1,7 @@
 import * as React from "react";
 
 // Persistent State Hook
-export const usePersistentState = (key: any, initVal: any) => {
+export const usePersistentState = (key: string, initVal: number) => {
   const [value, setValue] = React.useState(() => {
     const perstVal = window.localStorage.getItem(key);
     return perstVal !== null ? JSON.parse(perstVal) : initVal;
