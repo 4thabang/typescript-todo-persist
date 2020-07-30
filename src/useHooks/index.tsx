@@ -2,6 +2,7 @@ import * as React from "react";
 
 type Persist = {
   key: string;
+  initVal: number;
 }
 
 // Persistent State Hook
