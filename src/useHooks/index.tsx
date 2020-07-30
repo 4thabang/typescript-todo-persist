@@ -6,7 +6,7 @@ type Persist = {
 };
 
 // Persistent State Hook
-export const usePersistentState = (key: Persist["key"], initVal: number) => {
+export const usePersistentState = (key: Persist["key"], initVal: Persist["initVal"]) => {
   const [value, setValue] = React.useState(() => {
     const perstVal = window.localStorage.getItem(key);
     return perstVal !== null ? JSON.parse(perstVal) : initVal;
