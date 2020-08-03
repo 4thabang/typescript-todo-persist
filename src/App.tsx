@@ -14,8 +14,6 @@ const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
 
   const [text, setText] = usePersistentState("Todos", "");
 
-  // const [text, setText] = React.useState(emptyMessage);
-
   const handleDispatch = (e: React.MouseEvent<HTMLElement>): void => {
     e.preventDefault();
     if (text !== message) {
@@ -37,7 +35,6 @@ const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
 
   return (
     <div className="App">
-      {/* <h1>Thabang's TypeScript Todo App</h1> */}
       <form onSubmit={handleComplete}>
         <Input
           onChange={handleText}
