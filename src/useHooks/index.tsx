@@ -11,7 +11,7 @@ export const usePersistentState = (
   initVal: Persist["initVal"]
 ) => {
   const [value, setValue] = React.useState(() => {
-    const perstVal = window.localStorage.getItem(key);
+    const perstVal: string | null = window.localStorage.getItem(key);
     return perstVal !== null ? JSON.parse(perstVal) : initVal;
   });
   React.useEffect(() => {
