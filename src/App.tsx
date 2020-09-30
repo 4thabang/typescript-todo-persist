@@ -33,16 +33,6 @@ const App: React.FC<{message?: ISubmitTodo}> = ({ message = "" }) => {
     setText(e.target.value);
   };
 
-  const [data, setData] = React.useState<any>("")
-
-  React.useEffect(() => {
-    fetch("http://localhost:8080")
-    .then((res) => res.json())
-    .then((e) => setData(e))
-  })
-
-  console.log(data)
-
   return (
     <div className="App">
       <form onSubmit={handleComplete}>
