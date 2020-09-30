@@ -1,4 +1,4 @@
-import { ADD_TODO, TODO_COMPLETE, All_TODOS } from "../types";
+import { ADD_TODO, TODO_COMPLETE, ALL_TODOS } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Reducer<R> {
@@ -16,7 +16,7 @@ reducer = (state: State, action: Action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        todos: [...state.todos, { id: uuidv4(), todos: action.payload }]
+        todos: [...state.todos, { id: uuidv4(), todos: action.payload }],
       };
     case TODO_COMPLETE:
       return state.todos.filter((todo: any) => todo.id !== state.todos);
