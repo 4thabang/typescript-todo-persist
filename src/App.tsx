@@ -9,12 +9,14 @@ interface ISubmitTodo {
   message: string | number | string[] | undefined;
 }
 
-const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
+const App = ({ message = "" }: ISubmitTodo) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
   const [text, setText] = usePersistentState("Todos", "");
 
-  const handleDispatch = (e: React.MouseEvent<HTMLElement>): void => {
+  const handleDispatch = (
+    e: React.MouseEvent<HTMLElement>
+  ): void => {
     e.preventDefault();
     if (text !== message) {
       dispatch({ type: ADD_TODO, payload: text });
@@ -29,7 +31,9 @@ const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
     dispatch({ type: TODO_COMPLETE });
   };
 
-  const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleText = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setText(e.target.value);
   };
 
