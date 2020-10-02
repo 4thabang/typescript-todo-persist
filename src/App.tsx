@@ -5,20 +5,16 @@ import { usePersistentState } from "./useHooks";
 import { reducer, initialState } from "./reducer";
 import { ADD_TODO, TODO_COMPLETE } from "./types";
 
-interface ISubmitTodo {
-  message: string | number | string[] | undefined;
-}
-
-const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
+const App = () => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
   const [text, setText] = usePersistentState("Todos", "");
 
   const handleDispatch = (e: React.MouseEvent<HTMLElement>): void => {
     e.preventDefault();
-    if (text !== message) {
+    if (text !== "") {
       dispatch({ type: ADD_TODO, payload: text });
-      setText(message);
+      setText("");
     }
   };
 
