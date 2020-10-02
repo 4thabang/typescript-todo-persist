@@ -9,7 +9,7 @@ interface ISubmitTodo {
   message: string | number | string[] | undefined;
 }
 
-const App: React.FC<{message?: ISubmitTodo}> = ({ message = "" }) => {
+const App: React.FC<{ message?: ISubmitTodo }> = ({ message = "" }) => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
 
   const [text, setText] = usePersistentState("Todos", "");
@@ -32,6 +32,33 @@ const App: React.FC<{message?: ISubmitTodo}> = ({ message = "" }) => {
   const handleText = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setText(e.target.value);
   };
+
+  const [data, setData] = React.useState<any>({});
+  React.useEffect(() => {
+    const url = "http://86.150.218.137:8080/todos";
+    const header = new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    })
+    fetch(url, {
+      headers: header
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then((todo) => {
+        return setData(todo);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  console.log(data);
 
   return (
     <div className="App">
