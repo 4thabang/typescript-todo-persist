@@ -29,16 +29,10 @@ const App = () => {
     setText(e.target.value);
   };
 
-  const [data, setData] = React.useState<any>({});
+  const [data, setData] = React.useState<any>("");
   React.useEffect(() => {
-    const url = "http://86.150.218.137:8080/todos";
-    const header = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    })
-    fetch(url, {
-      headers: header
-    })
+    const url = "http://86.150.218.137:8080/";
+    fetch(url)
       .then((res) => {
         if (res.ok) {
           return res.json();
