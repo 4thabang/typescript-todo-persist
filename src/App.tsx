@@ -4,6 +4,7 @@ import { Input, Button, Box, Box1 } from "./components";
 import { usePersistentState } from "./useHooks";
 import { reducer, initialState } from "./reducer";
 import { ADD_TODO, TODO_COMPLETE } from "./types";
+import axios from "axios";
 
 const App = () => {
   const [{ todos }, dispatch] = React.useReducer(reducer, initialState);
@@ -31,17 +32,18 @@ const App = () => {
 
   const [data, setData] = React.useState<any>("");
   React.useEffect(() => {
-    const url = "http://86.150.218.137:8080/";
-    fetch(url)
+    const url = "https://cors-anywhere.herokuapp.com/http://127.0.0.1:8080";
+    axios
+      .get(url)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
+        if (res.status === 200) {
+          return res;
         } else {
           throw new Error("Something went wrong");
         }
       })
       .then((todo) => {
-        return setData(todo);
+        setData(todo);
       })
       .catch((e) => {
         console.log(e);
