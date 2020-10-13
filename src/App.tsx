@@ -30,11 +30,15 @@ const App = () => {
     setText(e.target.value);
   };
 
-  const [data, setData] = React.useState<any>("");
+  const [data, setData] = React.useState<any>([]);
   React.useEffect(() => {
-    const url = "https://cors-anywhere.herokuapp.com/http://127.0.0.1:8080";
+    const url = "http://127.0.0.1:8080/api";
     axios
-      .get(url)
+      .get(url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
           return res;
@@ -43,7 +47,7 @@ const App = () => {
         }
       })
       .then((todo) => {
-        setData(todo);
+        setData(todo.data);
       })
       .catch((e) => {
         console.log(e);
